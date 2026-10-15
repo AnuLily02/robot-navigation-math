@@ -3,22 +3,20 @@
 #include "distance.hpp"
 
 int main() {
-    // Current robot coordinates
-    RobotMath::Point2D robotPosition{1.5, 2.5};
+    Point2D robotPos = {1.5, 2.5};
+    Point2D targetWaypoint = {4.5, 6.5};
 
-    // Target waypoint coordinates
-    RobotMath::Point2D targetWaypoint{4.5, 6.5};
+    double distance = calculateEuclideanDistance(robotPos, targetWaypoint);
 
-    // Calculate distance
-    double distance = RobotMath::euclideanDistance2D(robotPosition, targetWaypoint);
-
-    // Display output
-    std::cout << std::fixed << std::setprecision(4);
     std::cout << "========== Robot Navigation Math ==========\n";
-    std::cout << "Robot Position   : (" << robotPosition.x << ", " << robotPosition.y << ")\n";
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << "Robot Position   : (" << robotPos.x << ", " << robotPos.y << ")\n";
     std::cout << "Target Waypoint  : (" << targetWaypoint.x << ", " << targetWaypoint.y << ")\n";
     std::cout << "Euclidean Distance: " << distance << " units\n";
     std::cout << "===========================================\n";
+
+    // Generate trajectory data for visualizer
+    generateTrajectoryLog(robotPos, targetWaypoint, 20, "trajectory.csv");
 
     return 0;
 }
