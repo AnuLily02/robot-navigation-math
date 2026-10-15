@@ -3,20 +3,21 @@
 #include "distance.hpp"
 
 int main() {
-    Point2D robotPos = {1.5, 2.5};
-    Point2D targetWaypoint = {4.5, 6.5};
+    // 2D Navigation
+    Point2D robot2D = {1.5, 2.5};
+    Point2D target2D = {4.5, 6.5};
+    generateTrajectoryLog2D(robot2D, target2D, 20, "trajectory.csv");
 
-    double distance = calculateEuclideanDistance(robotPos, targetWaypoint);
+    // 3D Navigation
+    Point3D robot3D = {1.5, 2.5, 0.0};
+    Point3D target3D = {6.5, 8.5, 5.0};
+    generateTrajectoryLog3D(robot3D, target3D, 25, "trajectory_3d.csv");
 
-    std::cout << "========== Robot Navigation Math ==========\n";
-    std::cout << std::fixed << std::setprecision(4);
-    std::cout << "Robot Position   : (" << robotPos.x << ", " << robotPos.y << ")\n";
-    std::cout << "Target Waypoint  : (" << targetWaypoint.x << ", " << targetWaypoint.y << ")\n";
-    std::cout << "Euclidean Distance: " << distance << " units\n";
-    std::cout << "===========================================\n";
-
-    // Generate trajectory data for visualizer
-    generateTrajectoryLog(robotPos, targetWaypoint, 20, "trajectory.csv");
+    std::cout << "========== Robot Navigation Simulation ==========\n";
+    std::cout << "2D Distance: " << calculateEuclideanDistance(robot2D, target2D) << " units\n";
+    std::cout << "3D Distance: " << calculateEuclideanDistance3D(robot3D, target3D) << " units\n";
+    std::cout << "Generated 'trajectory.csv' and 'trajectory_3d.csv' successfully.\n";
+    std::cout << "=================================================\n";
 
     return 0;
 }
